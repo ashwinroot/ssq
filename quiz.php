@@ -41,7 +41,7 @@ if(!isset($_SESSION[sid]) || !isset($_SESSION[tid]))
 
 <body>
 <?php
-include("header.php");
+include("userheader.php");
 
 
 $query="select * from mst_question";

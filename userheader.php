@@ -59,13 +59,7 @@
 <!-- Page Content -->
 <div class="container">
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron hero-spacer">
-        <h1>Coastal Products</h1>
-        <p>Subtext/Slogan</p>
-        <p><a href="#" class="btn btn-primary btn-large">See Our Products!</a>
-        </p>
-    </header>
+
 
     <hr>
 
@@ -134,7 +128,7 @@
     </div> -->
 
 
-    <hr>
+
 
 
 </div>
