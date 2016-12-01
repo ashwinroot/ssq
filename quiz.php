@@ -106,10 +106,10 @@ $row= mysql_fetch_row($rs);
 $ns= mysql_num_rows($rs);
 echo "<form name=myfm method=post action=quiz.php>";
 echo "<br><br>";
-echo "<table width=100% cellpadding='10px' float=none align='center'> <tr> <td width=30>&nbsp;<td> <table border=0>";
+echo "<table width=100% cellpadding='10px' float=none align=center> <tr> <td width=30>&nbsp;<td> <table border=0>";
 $n=$_SESSION[qn]+1;
 $val=($n-1)*100/$ns;
-echo "<progress class='progress progress-success' value=' ". $val . "' max=\"100\"> " . $val . "</progress>";  // progress error
+echo "<progress class='progress progress-info' value=' ". $val . "' max=\"100\"> " . $val . "</progress>";  // progress error
 echo "<tR><h5><td><span >Que ".  $n .": $row[2]</h5>";
 echo "<tr><td><h6><input class=\"form-check-input\" type=radio name=ans value=1>$row[3]</h6>";
 echo "<tr><td><h6><input class=\"form-check-input\" type=radio name=ans value=2>$row[4]</h6>";
@@ -119,7 +119,7 @@ echo "<tr><td><h6><input  class=\"form-check-input\" type=radio name=ans value=4
 //pagination left
 
 if($_SESSION[qn]<mysql_num_rows($rs)-1)
-echo "<tr><td><input type=submit name=submit value='Next Question'></form>";
+echo "<tr><td><input type=submit name=submit value='Next Question'></td></form>";
 else
 echo "<tr><td><input type=submit name=submit value='Get Result'></form>";
 echo "</table></table>";
