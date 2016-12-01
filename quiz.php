@@ -56,7 +56,7 @@ if(!isset($_SESSION[qn]))
 }
 else
 {	
-		if($submit=='Next Question' && isset($ans))
+		if($submit=='Next Question')
 		{
 				mysql_data_seek($rs,$_SESSION[qn]);
 				$row= mysql_fetch_row($rs);	
@@ -67,6 +67,10 @@ else
 				}
 				$_SESSION[qn]=$_SESSION[qn]+1;
 		}
+		else if($submit=='Previous Question')
+        {
+            $_SESSION[qn]=$_SESSION[qn]-1;
+        }
 		else if($submit=='Get Result' && isset($ans))
 		{
 				mysql_data_seek($rs,$_SESSION[qn]);
@@ -83,7 +87,7 @@ else
 				$w=$_SESSION[qn]-$_SESSION[trueans];
 				echo "<tr class=fans><td>Wrong Answer<td> ". $w;
 				echo "</table>";
-				mysql_query("insert into mst_result(login,test_id,test_date,score) values('$login',$tid,'".date("d/m/Y")."',$_SESSION[trueans])") or die(mysql_error());
+				mysql_query("insert into mst_result(login,test_id,test_date,score) values('$login',$tid,CURRENT_TIMESTAMP(),$_SESSION[trueans])") or die(mysql_error());
 				echo "<h1 align=center><a href=review.php> Review Question</a> </h1>";
 				unset($_SESSION[qn]);
 				unset($_SESSION[sid]);
@@ -117,11 +121,12 @@ echo "<tr><td><h6><input  class=\"form-check-input\" type=radio name=ans value=3
 echo "<tr><td><h6><input  class=\"form-check-input\" type=radio name=ans value=4>$row[6]</h6>";
 
 //pagination left
-
-if($_SESSION[qn]<mysql_num_rows($rs)-1)
-echo "<tr><td><input type=submit name=submit value='Next Question'></td></form>";
+if($_SESSION[qn]==0)
+    echo "<tr><td><input type=submit name=submit value='Next Question'></td></form>";
+else if($_SESSION[qn]<mysql_num_rows($rs)-1)
+    echo "<tr><td><input type=submit name=submit value='Previous Question'></td><td><input type=submit name=submit value='Next Question'></td></form>";
 else
-echo "<tr><td><input type=submit name=submit value='Get Result'></form>";
+    echo "<tr><td><input type=submit name=submit value='Previous Question'></td><td><input type=submit name=submit value='Get Result'></form>";
 echo "</table></table>";
 ?>
 </body>
