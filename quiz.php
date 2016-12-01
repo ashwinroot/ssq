@@ -99,19 +99,24 @@ unset($_SESSION[qn]);
 echo "<h1 class=head1>Some Error  Occured</h1>";
 session_destroy();
 echo "Please <a href=index.php> Start Again</a>";
-
 exit;
 }
 mysql_data_seek($rs,$_SESSION[qn]);
 $row= mysql_fetch_row($rs);
+$ns= mysql_num_rows($rs);
 echo "<form name=myfm method=post action=quiz.php>";
-echo "<table width=100%> <tr> <td width=30>&nbsp;<td> <table border=0>";
+echo "<br><br>";
+echo "<table width=100% cellpadding='10px' float=none align='center'> <tr> <td width=30>&nbsp;<td> <table border=0>";
 $n=$_SESSION[qn]+1;
-echo "<tR><td><span class=style2>Que ".  $n .": $row[2]</style>";
-echo "<tr><td class=style8><input type=radio name=ans value=1>$row[3]";
-echo "<tr><td class=style8> <input type=radio name=ans value=2>$row[4]";
-echo "<tr><td class=style8><input type=radio name=ans value=3>$row[5]";
-echo "<tr><td class=style8><input type=radio name=ans value=4>$row[6]";
+$val=($n-1)*100/$ns;
+echo "<progress class='progress progress-success' value=' ". $val . "' max=\"100\"> " . $val . "</progress>";  // progress error
+echo "<tR><h5><td><span >Que ".  $n .": $row[2]</h5>";
+echo "<tr><td><h6><input class=\"form-check-input\" type=radio name=ans value=1>$row[3]</h6>";
+echo "<tr><td><h6><input class=\"form-check-input\" type=radio name=ans value=2>$row[4]</h6>";
+echo "<tr><td><h6><input  class=\"form-check-input\" type=radio name=ans value=3>$row[5]</h6>";
+echo "<tr><td><h6><input  class=\"form-check-input\" type=radio name=ans value=4>$row[6]</h6>";
+
+//pagination left
 
 if($_SESSION[qn]<mysql_num_rows($rs)-1)
 echo "<tr><td><input type=submit name=submit value='Next Question'></form>";
