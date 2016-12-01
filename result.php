@@ -20,7 +20,7 @@ session_start();
 
 <body>
 <?php
-include("header.php");
+include("userheader.php");
 include("database.php");
 extract($_SESSION);
 $rs=mysql_query("select t.test_name,t.total_que,r.test_date,r.score from mst_test t, mst_result r where

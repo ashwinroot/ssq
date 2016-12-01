@@ -19,7 +19,7 @@ session_start();
 </head>
 <body>
 <?php
-include("header.php");
+include("userheader.php");
 include("database.php");
 extract($_GET);
 $rs1=mysql_query("select * from mst_subject where sub_id=$subid");

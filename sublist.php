@@ -19,7 +19,7 @@ session_start();
 </head>
 <body>
 <?php
-include("header.php");
+include("userheader.php");
 include("database.php");
 echo "<h2 class=head1> Select Subject to Give Quiz </h2>";
 $rs=mysql_query("select * from mst_subject");

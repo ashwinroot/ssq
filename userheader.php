@@ -16,7 +16,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <div class="navbar-header"
+        <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -29,13 +29,25 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li>
-                <a href="showtest.php">About</a>
+                <a href="showtest.php">Test</a>
             </li>
             <li>
-                <a href="result.php">Services</a>
+                <a href="result.php">Results</a>
             </li>
             <li>
-                <a href="sublist.php">Contact</a>
+                <a href="sublist.php">List</a>
+            </li>
+            <li>
+                <?php
+                if(isset($_SESSION['login']))
+                {
+                    echo "<a href=\"signout.php\">Signout</a></strong></div>";
+                }
+                else
+                {
+                    echo "&nbsp;";
+                }
+                ?>
             </li>
         </ul>
     </div>
@@ -57,7 +69,7 @@
 
     <hr>
 
-    <!-- Title -->
+    <!-- Title
     <div class="row">
         <div class="col-lg-12">
             <h3>Top Products</h3>
@@ -65,7 +77,7 @@
     </div>
 
 
-    <!-- Page Features -->
+
     <div class="row text-center">
 
         <div class="col-md-3 col-sm-6 hero-feature">
@@ -83,7 +95,6 @@
 
         <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
                 <div class="caption">
                     <h3>Feature Item</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -120,18 +131,10 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 
     <hr>
 
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright © Your Biz 2014</p>
-            </div>
-        </div>
-    </footer>
 
 </div>
