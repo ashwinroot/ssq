@@ -2,6 +2,7 @@
 session_start();
 extract($_POST);
 extract($_SESSION);
+error_reporting(0);
 include("database.php");
 if($submit=='Finish')
 {
@@ -30,8 +31,8 @@ if($submit=='Finish')
 
 <body>
 <?php
-include("header.php");
-echo "<h1 class=head1> Review Test Question</h1>";
+include("userheader.php");
+echo "<h1> Review Test Question</h1>";
 
 if(!isset($_SESSION[qn]))
 {
@@ -52,15 +53,18 @@ $n=$_SESSION[qn]+1;
 echo "<tR><td><span class=style2>Que ".  $n .": $row[2]</style>";
 if($row[6]!=$row[7])
     $bool=1;
+//found : no proper connection with the hexadecimal value generated and the answers given.  It is a static state now!
+echo "<tr><td class=".($row[7]==1?'bg-success':'bg-danger').">$row[3]";
+echo "<tr><td class=".($row[7]==2?'bg-success':'bg-danger').">$row[4]";
+echo "<tr><td class=".($row[7]==3?'bg-success':'bg-danger').">$row[5]";
+echo "<tr><td class=".($row[7]==4?'bg-success':'bg-danger').">$row[6]";
 
-echo "<tr><td class=".($row[7]==1?'tans':'style8').">$row[3]";
-echo "<tr><td class=".($row[7]==2?'tans':'style8').">$row[4]";
-echo "<tr><td class=".($row[7]==3?'tans':'style8').">$row[5]";
-echo "<tr><td class=".($row[7]==4?'tans':'style8').">$row[6]";
-if($_SESSION[qn]<mysql_num_rows($rs)-1)
-echo "<tr><td><input type=submit name=submit value='Next Question'></form>";
-else
-echo "<tr><td><input type=submit name=submit value='Finish'></form>";
+if($_SESSION[qn] < mysql_num_rows($rs) - 1) {
+    echo "<tr><td><input type=submit name=submit value='Next Question'></form>";
+}
+else {
+    echo "<tr><td><input type=submit name=submit value='Finish'></form>";
+}
 
 echo "</table></table>";
 ?>
